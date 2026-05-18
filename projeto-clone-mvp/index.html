@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FluxoMD - Markdown Editor</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h3>Documentos</h3>
+            <button onclick="createNewInstance()" class="btn-new" title="Novo">+</button>
+        </div>
+        <div class="sidebar-search">
+            <input type="text" id="search-input" placeholder="Buscar..." />
+        </div>
+        <div id="instance-list" class="instance-list"></div>
+        <div class="sidebar-footer">
+            <label class="autosave-toggle">
+                <input type="checkbox" id="autosave-check" checked onchange="toggleAutosave()">
+                <span>Auto-save</span>
+            </label>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="toolbar">
+            <div class="group">
+                <button onclick="applyStyle('bold')">B</button>
+                <button onclick="applyStyle('italic')">I</button>
+                <button onclick="applyStyle('heading')">H</button>
+                <button onclick="applyStyle('code')">&lt;/&gt;</button>
+            </div>
+
+            <div class="group file-actions">
+                <button onclick="renameCurrentInstance()" title="Renomear">Renomear</button>
+                <button onclick="duplicateCurrentInstance()" title="Duplicar">Duplicar</button>
+                <button onclick="openHistory()" title="Histórico">Histórico</button>
+                <button onclick="findReplace()" title="Buscar/Substituir">Buscar/Substituir</button>
+                <button onclick="exportCurrentInstance('md')" title="Exportar Markdown">Exportar MD</button>
+                <button onclick="exportCurrentInstance('html')" title="Exportar HTML">Exportar HTML</button>
+                <span id="stats"></span>
+            </div>
+
+            <div class="group">
+                <span id="save-status"></span>
+                <button id="save-btn" onclick="manualSave()" class="btn-save">Salvar</button>
+                <button onclick="deleteCurrentInstance()" class="btn-danger">Excluir</button>
+            </div>
+        </header>
+
+        <div class="editor-container">
+            <textarea id="editor" spellcheck="false" placeholder="Comece a escrever..."></textarea>
+            <div id="preview" class="markdown-body"></div>
+        </div>
+    </main>
+
+    <script src="userdata.js"></script>
+    <!-- Inline modal for confirmation and prompts (replaces native confirm/prompt) -->
+    <div id="app-modal" class="modal-overlay hidden" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <div class="modal-header">
+                <h4 id="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <p id="modal-message"></p>
+                <input id="modal-input" class="modal-input" type="text" />
+            </div>
+            <div class="modal-actions">
+                <button id="modal-cancel" class="btn">Cancelar</button>
+                <button id="modal-confirm" class="btn btn-primary">OK</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

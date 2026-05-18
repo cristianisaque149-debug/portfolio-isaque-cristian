@@ -1,0 +1,74 @@
+/* Reset and base */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', sans-serif; height: 100vh; display: flex; background: #1e1e1e; color: white; overflow: hidden; }
+
+/* Sidebar */
+.sidebar { width: 220px; background: #252526; border-right: 1px solid #333; display: flex; flex-direction: column; }
+.sidebar-header { padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333; }
+.sidebar-search { padding: 8px 12px; border-bottom: 1px solid #2d2d2d; }
+.sidebar-search input { width: 100%; padding: 8px 10px; background: #1b1b1b; color: #ddd; border: 1px solid #2e2e2e; border-radius: 4px; }
+.instance-list { flex: 1; overflow-y: auto; }
+.instance-item { padding: 10px 12px; cursor: pointer; border-bottom: 1px solid #2d2d2d; font-size: 13px; color: #ccc; display: flex; align-items: center; justify-content: space-between; }
+.instance-item:hover { background: #2a2d2e; }
+.instance-item.active { background: #37373d; color: white; border-left: 3px solid #007acc; }
+.instance-item span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; display: inline-block; max-width: calc(100% - 70px); }
+.sidebar-footer { padding: 10px; border-top: 1px solid #333; font-size: 12px; }
+
+/* instance actions */
+.instance-actions { display: inline-flex; gap: 6px; align-items: center; }
+.instance-actions .mini { padding: 4px 6px; font-size: 12px; background: transparent; border: 1px solid transparent; color: #aaa; border-radius: 4px; cursor: pointer; }
+.instance-actions .mini:hover { background: rgba(255,255,255,0.02); color: #fff; border-color: rgba(255,255,255,0.04); }
+
+/* Main Content */
+.main-content { flex: 1; display: flex; flex-direction: column; }
+.toolbar { background: #333; padding: 8px 15px; display: flex; gap: 12px; align-items: center; justify-content: space-between; }
+.group { display: flex; gap: 8px; align-items: center; }
+.file-actions { gap: 8px; align-items: center; }
+#stats { font-size: 12px; color: #aaa; margin-left: 8px; }
+
+.editor-container { flex: 1; display: flex; height: calc(100vh - 45px); }
+textarea, #preview { width: 50%; height: 100%; padding: 20px; border: none; outline: none; }
+textarea { background: #1e1e1e; color: #d4d4d4; font-family: 'Consolas', monospace; resize: none; border-right: 1px solid #333; }
+#preview { background: white; color: #333; overflow-y: auto; }
+
+/* Buttons */
+button { padding: 5px 12px; cursor: pointer; background: #444; color: white; border: 1px solid #555; border-radius: 3px; }
+.btn-new { background: #0e639c; border: none; }
+.btn-danger { background: #902727; border: none; }
+.btn-save.unsaved { background: #0e639c; border-color: #1177bb; animation: pulse 2s infinite; }
+#save-status { font-size: 11px; color: #aaa; }
+
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+
+.autosave-toggle { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+
+/* Small screens */
+@media (max-width: 800px) {
+    .sidebar { display: none; }
+    textarea, #preview { width: 100%; }
+}
+
+/* History list inside modal */
+.history-list { display: flex; flex-direction: column; gap: 10px; max-height: 50vh; overflow: auto; }
+.history-row { background: #111; padding: 10px; border-radius: 6px; display: flex; gap: 10px; align-items: center; }
+.history-meta { min-width: 180px; color: #ccc; font-size: 13px; }
+.history-preview { flex: 1; color: #ddd; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.history-actions { display: flex; gap: 8px; }
+.history-row .btn { padding: 6px 10px; }
+
+/* Pinned item styling */
+.instance-item.pinned { background: linear-gradient(90deg, rgba(7,54,66,0.14), transparent); border-left-color: #ffb86b; }
+
+/* Modal (in-page prompt/confirm) */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 9999; }
+.modal-overlay.hidden { display: none; }
+.modal { background: #1f1f1f; color: #fff; padding: 16px; border-radius: 8px; width: 90%; max-width: 480px; box-shadow: 0 6px 24px rgba(0,0,0,0.5); }
+.modal-header h4 { margin: 0 0 8px 0; font-size: 16px; }
+.modal-body { margin-bottom: 12px; }
+.modal-body p { color: #ddd; margin-bottom: 8px; }
+.modal-input { width: 100%; padding: 8px 10px; border-radius: 4px; border: 1px solid #333; background: #0f0f0f; color: #fff; }
+.modal-actions { display:flex; justify-content:flex-end; gap:8px; }
+.modal-actions .btn { padding: 6px 12px; }
+.btn-primary { background: #0e639c; border: none; }
+
+.modal .btn { border-radius: 4px; }
