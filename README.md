@@ -17,8 +17,7 @@ Python Java CSS3
 ⚡ No-Code
 Bubble
 
-**💰 I.A DESENVOLVIMENTO DE APP DE VIDEO CONFERENCIA	App de Videoconferencia	Ver Projeto
-💰 CONTROLE DE FATURAMENTO	Aplicação desenvolvida em Bubble para gestão de gastos e entradas pessoais.	Ver Projeto
+
 🏗 Estrutura do Repositório
 root/: Apresentação principal.
 /projeto-ruidos-carro/: Códigos em Python/CSS do diagnóstico automotivo.
